@@ -9,7 +9,7 @@ private String birthday;
 private String notes;
 private String relationship;
 private String nickname;
-	int x;
+	
 public String getContactname() {
 	return contactname;
 }
