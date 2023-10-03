@@ -11,6 +11,7 @@ private String relationship;
 private String nickname;
 	int x;
 	int y;
+	int Z;
 
 public String getContactname() {
 	return contactname;
