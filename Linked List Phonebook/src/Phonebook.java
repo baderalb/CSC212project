@@ -1,51 +1,51 @@
 import java.util.*;
 public class Phonebook {
-	static LinkedList<Contact>();
-	public PhoneBook() {
+	static LinkedList<Contact> contacts;
+	public Phonebook() {
 	   contacts=new LinkedList<Contact>();
 	}
-	public PhoneBook(LinkedList<Contact> contacts) {
+	public Phonebook(LinkedList<Contact> contacts) {
 		this.contacts = contacts;
 	}
 	public void Add_Stored_user(Contact d) {
-		if(contacts.isEmpty()) {
+		if(contacts.isempty()) {
 			contacts.insert(d);
 			return;
 		}
 		else {
-			contacts.FindFirst();
-			if(d.compareTo(contacts.retrieve().getcontact_name())<0) {
-				Contact c= new Contact(contacts.retrive());
+			contacts.findfirst ();
+			if(d.compareTo(contacts.retrieve().getContactname())<0) {
+				Contact c= new Contact(contacts.retrieve());
 				contacts.update(d);
 				contacts.insert(c);
 				return;
 			}else {
-				while(!contacts.last()&&(contacts.retrieve().compareTo(d.getContact_name())<=0){
-					contacts.findNext();
+				while(!contacts.last()&&(contacts.retrieve().compareTo(d.getContactname())<=0)){
+					contacts.findnext();
 				}
-				if(contacts.retrieve().compareTo(d.getContact_name())>0) {
-					Contact c= new Contact(contacts.retrive());
+				if(contacts.retrieve().compareTo(d.getContactname())>0) {
+					Contact c= new Contact(contacts.retrieve());
 					contacts.update(d);
 					contacts.insert(c);
 				}
 				else {
-					d.display_contact();
-					contact.insert(d);
+					d.displaycontact();
+					contacts.insert(d);
 					
 				}
 			}
 		}
 	}
 	public boolean search(Contact c) {
-		if(contacts.isEmpty())
+		if(contacts.isempty())
 			return false;
-		contacts.FindFirst();
+		contacts.findfirst();
 		while(!contacts.last()) {
-			if(contacts.retrieve().getContact_name().equals(c.getContact_name())||contacts.retrieve().getPhone_num().equals(c.getPhone_num()))
+			if(contacts.retrieve().getContactname().equals(c.getContactname())||contacts.retrieve().getPhonenumber().equals(c.getPhonenumber()))
 				return true;
-			contacts.findNext();
+			contacts.findnext();
 			}
-		if(contacts.retrieve().getContact_name().equals(c.getContact_name())||contacts.retrieve().getPhone_num().equals(c.getPhone_num()))
+		if(contacts.retrieve().getContactname().equals(c.getContactname())||contacts.retrieve().getPhonenumber().equals(c.getPhonenumber()))
 				return true;
 		else
 			return false;
@@ -53,9 +53,18 @@ public class Phonebook {
 	public void add_contact(Contact c) {
 		boolean found=search(c);
 		if(!found) {
-			contacts.Add_Sorted1();
+			Contact.Add_Sorted1();//where add sorted?
 		}
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
@@ -68,4 +77,15 @@ public class Phonebook {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
 }

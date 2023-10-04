@@ -108,16 +108,6 @@ public class Contact implements Comparable<String> {
 	public int compareTo(Contact p) {
 		return contactname.compareTo(p.contactname);
 	}
-	public void add(contact c) {
-		boolean found = search(c);
-		if(!found) {
-			Contacts.addsorted(c);
-			System.out.println("contact added successfully");
-		}else {
-			System.out.println("adding failed");
-		}
-	}
-
 	public void readfromcontact() {
 		Scanner input = new Scanner(System.in);
 		System.out.println(" please enter the contact name:");

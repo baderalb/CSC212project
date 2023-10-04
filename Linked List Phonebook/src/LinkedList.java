@@ -14,7 +14,7 @@ public class LinkedList<T> {
 	public LinkedList () {
 	head = current = null;
 	}
-	public boolean empty () {
+	public boolean isempty () {
 	return head == null;
 	}
 	public boolean last () {
@@ -36,7 +36,7 @@ public class LinkedList<T> {
 
 		public void insert (T value) {
 			Node<T> p;
-			if (empty()) {
+			if (isempty()) {
 			current = head = new Node<T> (value);
 			}
 			else {
