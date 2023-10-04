@@ -56,6 +56,31 @@ public class Phonebook {
 			Contact.Add_Sorted1();//where add sorted?
 		}
 	}
+	public void deletecontact(String s) {
+		if(contacts.isempty()) {
+			System.out.println("Empty List can not be deleted");
+			return;
+		}
+		contacts.findfirst();
+		while(!contacts.last()) {
+		if(contacts.retrieve().getContactname().equals(s)) {
+			contacts.remove();
+			System.out.println(s+"Contact deleted");
+			return;
+		}
+		contacts.findnext();
+		}
+		if(contacts.retrieve().getContactname().equals(s)) {
+			contacts.remove();
+			System.out.println(s+"contact deleted");
+		}
+		else
+			System.out.println("can not be deleted it is not exist");
+	}
+			
+		}
+		}
+	
 
 	
 	
