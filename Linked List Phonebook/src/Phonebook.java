@@ -54,6 +54,9 @@ public class Phonebook {
 		boolean found=search(c);
 		if(!found) {
 			Contact.AddSorted1(c);
+			System.out.println("Contact added successfully");
+		}else {
+				System.out.println("Adding Failed");
 		}
 	}
 	public void deletecontact(String s) {
