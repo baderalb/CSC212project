@@ -53,7 +53,7 @@ public class Phonebook {
 	public void add_contact(Contact c) {
 		boolean found=search(c);
 		if(!found) {
-			Contact.Add_Sorted1();//where add sorted?
+			Contact.AddSorted1(c);
 		}
 	}
 	public void deletecontact(String s) {
