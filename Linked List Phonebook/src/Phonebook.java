@@ -59,6 +59,114 @@ public class Phonebook {
 				System.out.println("Adding Failed");
 		}
 	}
+	
+	
+	
+	public LinkedList<Contact> SearchByEmail(String email) {
+		LinkedList<Contact> list = new LinkedList<Contact> ();
+		if(contacts.isempty()) {
+			return list;
+		}
+			contacts.findfirst();
+			while(!contacts.last()) {
+				if(contacts.retrieve().getEmailadress().equalsIgnoreCase(email)) {
+					list.insert(contacts.retrieve());
+				}
+					contacts.findnext();
+				
+			}
+			if(contacts.retrieve().getEmailadress().equalsIgnoreCase(email)){
+				list.insert(contacts.retrieve());
+			}
+			return list;
+			}
+	
+	
+	
+	public LinkedList<Contact> SearchByBirthDay(String birth) {
+		LinkedList<Contact> list = new LinkedList<Contact> ();
+		if(contacts.isempty()) {
+			return list;
+		}
+			contacts.findfirst();
+			while(!contacts.last()) {
+				if(contacts.retrieve().getBirthday().equalsIgnoreCase(birth)) {
+					list.insert(contacts.retrieve());
+				}
+					contacts.findnext();
+				
+			}
+			if(contacts.retrieve().getBirthday().equalsIgnoreCase(birth)){
+				list.insert(contacts.retrieve());
+			}
+			return list;
+			}
+	
+	
+	
+	public LinkedList<Contact> SearchByAddress(String address) {
+		LinkedList<Contact> list = new LinkedList<Contact> ();
+		if(contacts.isempty()) {
+			return list;
+		}
+			contacts.findfirst();
+			while(!contacts.last()) {
+				if(contacts.retrieve().getAddress().equalsIgnoreCase(address)) {
+					list.insert(contacts.retrieve());
+				}
+					contacts.findnext();
+				
+			}
+			if(contacts.retrieve().getAddress().equalsIgnoreCase(address)){
+				list.insert(contacts.retrieve());
+			}
+			return list;
+			}
+	
+	
+	
+	public LinkedList<Contact> SearchByContactName(String Name) {
+		LinkedList<Contact> list = new LinkedList<Contact> ();
+		if(contacts.isempty()) {
+			return list;
+		}
+			contacts.findfirst();
+			while(!contacts.last()) {
+				if(contacts.retrieve().getContactname().equalsIgnoreCase(Name)) {
+					list.insert(contacts.retrieve());
+				}
+					contacts.findnext();
+				
+			}
+			if(contacts.retrieve().getContactname().equalsIgnoreCase(Name)){
+				list.insert(contacts.retrieve());
+			}
+			return list;
+			}
+	
+	
+	
+	public LinkedList<Contact> SearchByPhoneNumber(String PhoneNumber) {
+		LinkedList<Contact> list = new LinkedList<Contact> ();
+		if(contacts.isempty()) {
+			return list;
+		}
+			contacts.findfirst();
+			while(!contacts.last()) {
+				if(contacts.retrieve().getPhonenumber().equalsIgnoreCase(PhoneNumber)) {
+					list.insert(contacts.retrieve());
+				}
+					contacts.findnext();
+				
+			}
+			if(contacts.retrieve().getPhonenumber().equalsIgnoreCase(PhoneNumber)){
+				list.insert(contacts.retrieve());
+			}
+			return list;
+			}
+			
+		
+	
 	public void deletecontact(String s) {
 		if(contacts.isempty()) {
 			System.out.println("Empty List can not be deleted");
