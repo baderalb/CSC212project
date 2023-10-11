@@ -9,6 +9,9 @@ public class Contact implements Comparable<String> {
 	private String notes;
 	private String relationship;
 	private String nickname;
+	private Event  EventInContact;//NEW
+
+	public LinkedList <Event> ContactEvent = new LinkedList<Event>();//NEW
 
 	public String getContactname() {
 		return contactname;
@@ -131,6 +134,13 @@ public class Contact implements Comparable<String> {
 
 	public void displaycontact() {
 		System.out.println("Name:" + contactname);
+		System.out.println("Phone Number" + phonenumber);//new
+		System.out.println("Email" + emailaddress);//new
+		System.out.println("Addres" + address);//new
+		System.out.println("Birthday" + birthday);//new
+		System.out.println("Notes" + notes);//new
+		System.out.println("Relation ship" + relationship);//new
+		System.out.println("Nick name" + nickname);//new
 	}
 
 }

@@ -1,8 +1,10 @@
 import java.util.*;
 public class Phonebook {
 	static LinkedList<Contact> contacts;
+	static LinkedList<Event> Events;//new
 	public Phonebook() {
 	   contacts=new LinkedList<Contact>();
+	   Events = new LinkedList<Event>();//new
 	}
 	public Phonebook(LinkedList<Contact> contacts) {
 		this.contacts = contacts;
@@ -188,9 +190,75 @@ public class Phonebook {
 		else
 			System.out.println("can not be deleted it is not exist");
 	}
+	
+	public void displayAllContactLinkedList(LinkedList<Contact> List) {//new
+		if(List.isempty()) {
+			System.out.println("there is no contact in your list");
+		}
+		else {
+			List.findfirst();
+			while(!List.last()) {
+				List.retrieve().displaycontact();
+				System.out.print("\n");
+				List.findnext();
+			}
+			List.retrieve().displaycontact();
+			System.out.print("\n");
+				
+			}
+		}
+	
+	public void displayAllContactByNameLinkedList(LinkedList<Contact> List) {//new maybe it's not necessary
+		if(List.isempty()) {
+			System.out.println("there is no contact in your list");
+		}
+		else {
+			List.findfirst();
+			while(!List.last()) {
+				System.out.println(List.retrieve().getContactname());
+				System.out.print("\n");
+				List.findnext();
+			}
+			System.out.println(List.retrieve().getContactname());
+			System.out.print("\n");
+		}
 			
+	}
+	
+	public void displayAllEventsLinkedList(LinkedList<Event> List) {//new
+		if(List.isempty()) {
+			System.out.println("there is no contact in your list");
 		}
-		}
+		else {
+			
+			List.findfirst();
+			while(!List.last()) {
+				System.out.println("This event has these contacts");
+				displayAllContactByNameLinkedList(List.retrieve().ContactsWithEvent);
+				System.out.print("\n");
+				List.findnext();
+			}
+			System.out.println(List.retrieve());
+			System.out.println("This event has these contacts");
+			displayAllContactByNameLinkedList(List.retrieve().ContactsWithEvent);
+			System.out.print("\n");
+	}
+	
+	
+	
+	
+	
+	}
+	}
+
+	
+	
+	
+	
+
+			
+		
+		
 	
 
 	
@@ -223,5 +291,4 @@ public class Phonebook {
 	
 	
 	
-}
-}
+
