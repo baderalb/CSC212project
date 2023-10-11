@@ -69,7 +69,7 @@ public class Phonebook {
 	}
 
 	public void add_Event(Event e) {
-		Event found = SearchByTitle(e.getEvent_title()); // SearchEventByTitle
+		Event found = SearchByTitle(e.getEvent_title()); // SearchEventByTitle s
 		if (found == null) {
 			all_Events.Add_Sorted_Event(e);
 		}
