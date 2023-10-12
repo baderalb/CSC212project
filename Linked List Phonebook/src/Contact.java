@@ -27,6 +27,7 @@ public class Contact implements Comparable<String> {
 		this.phonenumber = phonenumber;
 	}
 
+	
 	public String getEmailaddress() {
 		return emailaddress;
 	}

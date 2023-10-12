@@ -255,6 +255,7 @@ public class Phonebook {
 			System.out.print("\n");
 		}
 
+		
 	}
 
 	public void displayAllEventsLinkedList(LinkedList<Event> List) {// new

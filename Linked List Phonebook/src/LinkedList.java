@@ -63,6 +63,7 @@ public class LinkedList<T> {
 		}
 
 		
+		
 public boolean search(T X) {
 	Node<T>temp=head;
 	while(temp!=null) {
