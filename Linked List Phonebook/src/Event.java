@@ -12,7 +12,6 @@ public class Event {
 
 	
 
-
 	public Event(String EventTitle, String EventDate ,String EventTime, String EventLocation , String ContactName) {
 		
 		this.EventTitle=EventTitle;

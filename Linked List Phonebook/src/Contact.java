@@ -156,7 +156,5 @@ public class Contact implements Comparable<String> {
 		System.out.println("Notes" + notes);//new
 		System.out.println("Relation ship" + relationship);//new
 		System.out.println("Nick name" + nickname);//new
-
 }
-
 }
