@@ -9,10 +9,8 @@ public class Contact implements Comparable<String> {
 	private String notes;
 	private String relationship;
 	private String nickname;
-	private Event  EventInContact;//NEW
-
-	public LinkedList <Event> ContactEvent = new LinkedList<Event>();//NEW
-
+	private Event  EventInContact;
+	public LinkedList <Event> ContactEvent = new LinkedList<Event>();
 	public String getContactname() {
 		return contactname;
 	}
@@ -29,12 +27,12 @@ public class Contact implements Comparable<String> {
 		this.phonenumber = phonenumber;
 	}
 
-	public String getEmailadress() {
+	public String getEmailaddress() {
 		return emailaddress;
 	}
 
-	public void setEmailadress(String emailadress) {
-		this.emailaddress = emailadress;
+	public void setEmailaddress(String emailaddress) {
+		this.emailaddress = emailaddress;
 	}
 
 	public String getAddress() {
@@ -75,6 +73,23 @@ public class Contact implements Comparable<String> {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	
+
+	public Event getEventInContact() {
+		return EventInContact;
+	}
+
+	public void setEventInContact(Event eventInContact) {
+		EventInContact = eventInContact;
+	}
+
+	public LinkedList<Event> getContactEvent() {
+		return ContactEvent;
+	}
+
+	public void setContactEvent(LinkedList<Event> contactEvent) {
+		ContactEvent = contactEvent;
 	}
 
 	public Contact() {
@@ -141,6 +156,7 @@ public class Contact implements Comparable<String> {
 		System.out.println("Notes" + notes);//new
 		System.out.println("Relation ship" + relationship);//new
 		System.out.println("Nick name" + nickname);//new
-	}
+
+}
 
 }

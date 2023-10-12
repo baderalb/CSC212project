@@ -1,4 +1,3 @@
-
 public class Event {
 	private String EventTitle;
 	private String EventDate;
@@ -10,6 +9,9 @@ public class Event {
 	public LinkedList<Event> EventInEvent= new LinkedList<Event>() ;
 	public LinkedList<Contact> ContactsWithEvent = new LinkedList<Contact>();//requirement
 	
+
+	
+
 
 	public Event(String EventTitle, String EventDate ,String EventTime, String EventLocation , String ContactName) {
 		
@@ -82,12 +84,31 @@ public class Event {
 		ContactInvolvedInthisEvent = contactInvolvedInthisEvent;
 	}
 
+	public LinkedList<Event> getEventInEvent() {
+		return EventInEvent;
+	}
 
+
+	public void setEventInEvent(LinkedList<Event> eventInEvent) {
+		EventInEvent = eventInEvent;
+	}
+
+
+	public LinkedList<Contact> getContactsWithEvent() {
+		return ContactsWithEvent;
+	}
+
+
+	public void setContactsWithEvent(LinkedList<Contact> contactsWithEvent) {
+		ContactsWithEvent = contactsWithEvent;
+	}
+	
 	@Override
 	public String toString() {
 		return "Event [EventTitle=" + EventTitle + ", EventDate=" + EventDate + ", EventTime=" + EventTime
 				+ ", EventLocation=" + EventLocation + ", ContactName=" + ContactName + "]";
-	}
+	}	
+	
 	
 	
 }
