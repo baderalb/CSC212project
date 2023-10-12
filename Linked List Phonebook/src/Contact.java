@@ -9,7 +9,8 @@ public class Contact implements Comparable<String> {
 	private String notes;
 	private String relationship;
 	private String nickname;
-
+	private Event  EventInContact;
+	public LinkedList <Event> ContactEvent = new LinkedList<Event>();
 	public String getContactname() {
 		return contactname;
 	}

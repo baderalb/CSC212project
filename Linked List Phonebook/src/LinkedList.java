@@ -81,7 +81,32 @@ public void display() {
 		cuurent=cuurent.next;
 	}
 }
+public void AddSorted2(T d) {
+	Node<T> p=new Node<T>(d);
+	if (head == null) {
+		head = p;
+		current = p;
+		return;
+
+	} else {
+		if (((Contact) d). compareTo((Contact) head.data) < 0) {
+			p.next = head;
+			head = p;
+			return;
+		} else {
+			Node<T> r = head,
+			q = null;
+			while (r != null && (((Contact) r.data).compareTo(((Contact) d).getContactname()) <= 0)) {
+				q = r;
+			r = r.next;
+		}
+		q.next = p;
+		p.next = r;
+	}
 }
+}
+}
+
 
 
 
