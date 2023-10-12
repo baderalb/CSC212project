@@ -81,8 +81,6 @@ public class Event {
 	public void setContactInvolvedInthisEvent(Contact contactInvolvedInthisEvent) {
 		ContactInvolvedInthisEvent = contactInvolvedInthisEvent;
 	}
-
-
 	@Override
 	public String toString() {
 		return "Event [EventTitle=" + EventTitle + ", EventDate=" + EventDate + ", EventTime=" + EventTime
