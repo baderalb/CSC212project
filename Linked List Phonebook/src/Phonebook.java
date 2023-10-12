@@ -255,6 +255,6 @@ public class Phonebook {
 			displayAllContactByNameLinkedList(List.retrieve().ContactsWithEvent);
 			System.out.print("\n");
 		}
-
 	}
+	System.out.print("hello");
 }
