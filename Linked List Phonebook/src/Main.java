@@ -4,11 +4,11 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-	
 		Phonebook book = new Phonebook();
 		System.out.println("Welcome to the Linked Tree Phonebook!\n");
 		Scanner s = new Scanner(System.in);
 		while (true) {
+
 			System.out.println("Please choose an option:\n" + "1. Add a contact\n" + "2. Search for a contact\n"
 					+ "3. Delete a contact\n" + "4. Schedule an event\n" + "5. Print event details\n"
 					+ "6. Print contacts by first name\n" + "7. Print all events alphabetically\n" + "8. Exit\n" + "\n"
@@ -25,14 +25,19 @@ public class Main {
 				System.out.print("Enter the contact's address: ");
 				String address = s.nextLine();
 				System.out.print("Enter the contact's birthday: ");
-				String date = s.nextLine();
-				System.out.print("Enter any notes for the contact: ");
-				String note = s.nextLine();
-				System.out.println("");
-				if (book.add(new Contact(name, phone, email, address, new Date(date), note))) {
-					System.out.println("Contact added successfully!");
-				} else {
-					System.out.println("Contact with same name or phone already exist in the system.");
+				try {
+					String date = s.nextLine();
+					System.out.print("Enter any notes for the contact: ");
+					String note = s.nextLine();
+					System.out.println("");
+
+					if (book.add(new Contact(name, phone, email, address, new Date(date), note))) {
+						System.out.println("Contact added successfully!");
+					} else {
+						System.out.println("Contact with same name or phone already exist in the system.");
+					}
+				} catch (Exception e) {
+					System.out.println("wrong birthday input");
 				}
 			}
 				break;
@@ -102,15 +107,19 @@ public class Main {
 
 				case "5": {
 					System.out.print("Enter the contact's birthday: ");
-					String date = s.nextLine();
-					Contact c = book.SearchByBirth(new Date(date));
-					if (c != null) {
-						System.out.println("Contacts found!\n");
-						System.out.println(c);
-					}
+					try {
+						String date = s.nextLine();
+						Contact c = book.SearchByBirth(new Date(date));
+						if (c != null) {
+							System.out.println("Contacts found!\n");
+							System.out.println(c);
+						}
 
-					else {
-						System.out.println("No such contact");
+						else {
+							System.out.println("No such contact");
+						}
+					} catch (Exception e) {
+						System.out.println("wrong birthday input");
 					}
 
 				}
@@ -143,9 +152,13 @@ public class Main {
 				System.out.print("Enter event date and time (MM/DD/YYYY HH:MM): ");
 				String date = s.nextLine();
 				System.out.print("Enter event location: ");
-				String location = s.nextLine();
-				if (book.Schedule(title, name, new Date(date), location)) {
-					System.out.println("Event scheduled successfully!");
+				try {
+					String location = s.nextLine();
+					if (book.Schedule(title, name, new Date(date), location)) {
+						System.out.println("Event scheduled successfully!");
+					}
+				} catch (Exception e) {
+					System.out.println("wrong date input");
 				}
 			}
 				break;
@@ -217,11 +230,14 @@ public class Main {
 				return;
 			}
 
-			// ===============================================================
+			default:
+				System.out.println("wrong input");
 			}
+
+			// ===============================================================
+
 			System.out.println("\n");
 
 		}
 	}
-
 }

@@ -1,6 +1,5 @@
 
 import java.util.Date;
-
 public class LinkedList {
     //LinkedListADT all_contacts ;
     Contact head;
