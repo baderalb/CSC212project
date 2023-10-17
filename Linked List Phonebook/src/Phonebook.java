@@ -1,280 +1,194 @@
-import java.util.*;
 
-public class Phonebook {
-	static LinkedList<Contact> contacts;
-	static LinkedList<Event> Events;// new
+import java.util.Date;
 
-	public Phonebook() {
-		contacts = new LinkedList<Contact>();
-		Events = new LinkedList<Event>();// new
-	}
 
-	public Phonebook(LinkedList<Contact> contacts) {
-		this.contacts = contacts;
-	}
+public class Phonebook 
+{
+    
+    LinkedList list;//to store the contacts
+    Event events;//to store the events as linked_list
+    Contact contacts;
+    
+    Phonebook()
+    {
+        list = new LinkedList();
+        events = null;
+    }
+    
+    //add new contact to the list
+    public boolean add(Contact c)
+    {
+        //check if we added this contact before or not
+        if(list.check(c.name, c.phone))
+            return false;
+        else
+        {   
+            list.add(c);
+            return true;
+        }
+    }
+    
+    //search for contact by name
+    public Contact SearchByName(String name)
+    {
+        return list.SearchByName(name);
+    }
+    
+    //search for contact by phone
+    public Contact SearchByPhone(String phone)
+    {
+        return list.SearchByPhone(phone);
+    }
+    
+    
+    //search for contacts by email
+    public Contact SearchByEmail(String email)
+    {
+        return list.SearchByEmail(email);
+    }
+    
+    //search for contacts by address
+    public Contact SearchByAddress(String address)
+    {
+        return list.SearchByAddress(address);
+    }
+    
+    //search for contacts by birth date
+    public Contact SearchByBirth(Date birth)
+    {
+        return list.SearchByBirth(birth);
+    }
+    
+    //search for contacts by first name
+    public Contact[] SearchByFirstName(String name)
+    {
+        return list.SearchByFirstName(name);
+    }
+    
+    //Schedule a new event
+    public boolean Schedule(String title , String name , Date date , String location )
+    {
+        //search for the contact based on name
+        Contact c = list.SearchByName(name);
+        if( c != null ) {
+            Event event = new Event(title, date , location,c);
+            //check if we add first event
+            if(events==null) {
+                events  = event;
+                return true;}
+            //check if we have conflict in same date and time
+            if(CheckConflict(event)) {
+                System.out.println("Conflict in date and time.!");
+                return false;}
+            //add the event in alphapitical order
+            Event temp= events , prev=events;
+            while(temp != null){
+                if(temp.title.compareTo(event.title) > 0){
+                    if (temp == events) {
+                        event.next = events;
+                        events = event;
+                    } else {
+                        prev.next = event;
+                        event.next = temp; }
+                    return true;
+                }
+                prev=temp;
+                temp=temp.next;
+            }
+            prev.next = event;
+            return true;
+        }
+        else{
+            System.out.println("No such contact!");
+            return false; } 
+    }
+    
+    //search for events based on contact name
+    public Event SearchEventByName(String name)
+    {
+    	
+       
+        Event temp = events;
+        while(temp != null)
+        {
+          
+            if(temp.c.name.equals(name))
+                return temp;
+            temp = temp.next;
+        }
+        return null;
+    }
+    
+    //search for events based on title
+    public Event SearchEventByTitle(String title)
+    {
+        //to each event in the list
+        Event temp = events;
+        while(temp != null)
+        {
+            //if title equals then return the event
+            if(temp.title.equals(title))
+                return temp;
+            temp = temp.next;
+        }
+        return null;
+    }
+    
+    //print all events in the list in alphapitical order
+    public void PrintAllEvent()
+    {
+        Event temp = events;
+        while (temp != null) {
+            System.out.println(temp + "\n");
+            temp = temp.next;
+        }
+    }
+    
+    //Delete a contact and all events related with it
+    public boolean Delete(String name)
+    {
+        //if contact delete
+        if(list.delete(name))
+        {
+            //search for all events related with and delete them 
+            Event temp = events , prev = null;
+            while(temp != null)
+            {
+                if(temp.c.name.equals(name))
+                {
+                    if(temp == events)
+                    {
+                        events= events.next;
+                        temp = events;
+                        continue;
+                    }
+                    else
+                    {
+                        prev.next = temp.next;
+                        temp = temp.next;
+                        continue;
+                    }
+                }
+                prev= temp;
+                temp = temp.next;
+            }
+            return true;
+        }
+        return false;
+    }
 
-	public void Add_Stored_user(Contact d) {
-		if (contacts.isempty()) {
-			contacts.insert(d);
-			return;
-		} else {
-			contacts.findfirst();
-			if (d.compareTo(contacts.retrieve().getContactname()) < 0) {
-				Contact c = new Contact(contacts.retrieve());
-				contacts.update(d);
-				contacts.insert(c);
-				return;
-			} else {
-				while (!contacts.last() && (contacts.retrieve().compareTo(d.getContactname()) <= 0)) {
-					contacts.findnext();
-				}
-				if (contacts.retrieve().compareTo(d.getContactname()) > 0) {
-					Contact c = new Contact(contacts.retrieve());
-					contacts.update(d);
-					contacts.insert(c);
-				} else {
-					d.displaycontact();
-					contacts.insert(d);
-
-				}
-			}
-		}
-	}
-
-	public boolean search(Contact c) {
-		if (contacts.isempty())
-			return false;
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getContactname().equals(c.getContactname())
-					|| contacts.retrieve().getPhonenumber().equals(c.getPhonenumber()))
-				return true;
-			contacts.findnext();
-		}
-		if (contacts.retrieve().getContactname().equals(c.getContactname())
-				|| contacts.retrieve().getPhonenumber().equals(c.getPhonenumber()))
-			return true;
-		else
-			return false;
-	}
-
-	public void add_contact(Contact c) {
-		boolean found = search(c);
-		if (!found) {
-			contacts. AddSorted2(c);
-			System.out.println("Contact added successfully");
-		} else {
-			System.out.println("Adding Failed");
-		}
-	}
-	
-	public Event SearchByEventTiltle(String s) {
-		if (Events.isempty()) {
-			return null;
-		}
-		Events.findfirst();
-		while(!Events.last()){
-			if (Events.retrieve().getEventTitle().equals(s)) {
-				return Events.retrieve();
-			}
-			Events.findnext();
-		}
-		if(Events.retrieve().getEventTitle().equals(s)) {
-			return Events.retrieve();
-		}
-			return null;
-			
-	
-		}
-
-	public void add_Event(Event e) {
-		Event found = SearchByEventTiltle(e.getEventTitle()); // SearchEventByTitle s
-		if (found == null) {
-			Events.Add_Sorted_Event(e);
-		}
-	}
-
-	public LinkedList<Event> getEvents_in_contact(String n) {
-		Contact this_contact = SearchByContactName(n);
-		if (this_contact != null)
-			return this_contact.getContactEvent();
-		return new LinkedList<Event>();
-	}
-
-	public LinkedList<Contact> getContacts_in_Event(String n) {
-		Event this_Event = SearchByEventTiltle(n); //SearchByContactName
-		if (this_Event != null)
-
-			return this_Event.getContactsWithEvent();
-		return new LinkedList<Contact>();
-	}
-
-	public LinkedList<Contact> SearchByEmail(String email) {
-		LinkedList<Contact> list = new LinkedList<Contact>();
-		if (contacts.isempty()) {
-			return list;
-		}
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getEmailaddress().equalsIgnoreCase(email)) {
-				list.insert(contacts.retrieve());
-			}
-			contacts.findnext();
-
-		}
-		if (contacts.retrieve().getEmailaddress().equalsIgnoreCase(email)) {
-			list.insert(contacts.retrieve());
-		}
-		return list;
-	}
-
-	public LinkedList<Contact> SearchByBirthDay(String birth) {
-		LinkedList<Contact> list = new LinkedList<Contact>();
-		if (contacts.isempty()) {
-			return list;
-		}
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getBirthday().equalsIgnoreCase(birth)) {
-				list.insert(contacts.retrieve());
-			}
-			contacts.findnext();
-
-		}
-		if (contacts.retrieve().getBirthday().equalsIgnoreCase(birth)) {
-			list.insert(contacts.retrieve());
-		}
-		return list;
-	}
-
-	public LinkedList<Contact> SearchByAddress(String address) {
-		LinkedList<Contact> list = new LinkedList<Contact>();
-		if (contacts.isempty()) {
-			return list;
-		}
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getAddress().equalsIgnoreCase(address)) {
-				list.insert(contacts.retrieve());
-			}
-			contacts.findnext();
-
-		}
-		if (contacts.retrieve().getAddress().equalsIgnoreCase(address)) {
-			list.insert(contacts.retrieve());
-		}
-		return list;
-	}
-
-	public LinkedList<Contact> SearchByContactName(String Name) {
-		LinkedList<Contact> list = new LinkedList<Contact>();
-		if (contacts.isempty()) {
-			return list;
-		}
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getContactname().equalsIgnoreCase(Name)) {
-				list.insert(contacts.retrieve());
-			}
-			contacts.findnext();
-
-		}
-		if (contacts.retrieve().getContactname().equalsIgnoreCase(Name)) {
-			list.insert(contacts.retrieve());
-		}
-		return list;
-	}
-
-	public LinkedList<Contact> SearchByPhoneNumber(String PhoneNumber) {
-		LinkedList<Contact> list = new LinkedList<Contact>();
-		if (contacts.isempty()) {
-			return list;
-		}
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getPhonenumber().equalsIgnoreCase(PhoneNumber)) {
-				list.insert(contacts.retrieve());
-			}
-			contacts.findnext();
-
-		}
-		if (contacts.retrieve().getPhonenumber().equalsIgnoreCase(PhoneNumber)) {
-			list.insert(contacts.retrieve());
-		}
-		return list;
-	}
-
-	public void deletecontact(String s) {
-		if (contacts.isempty()) {
-			System.out.println("Empty List can not be deleted");
-			return;
-		}
-		contacts.findfirst();
-		while (!contacts.last()) {
-			if (contacts.retrieve().getContactname().equals(s)) {
-				contacts.remove();
-				System.out.println(s + "Contact deleted");
-				return;
-			}
-			contacts.findnext();
-		}
-		if (contacts.retrieve().getContactname().equals(s)) {
-			contacts.remove();
-			System.out.println(s + "contact deleted");
-		} else
-			System.out.println("can not be deleted it is not exist");
-	}
-
-	public void displayAllContactLinkedList(LinkedList<Contact> List) {// new
-		if (List.isempty()) {
-			System.out.println("there is no contact in your list");
-		} else {
-			List.findfirst();
-			while (!List.last()) {
-				List.retrieve().displaycontact();
-				System.out.print("\n");
-				List.findnext();
-			}
-			List.retrieve().displaycontact();
-			System.out.print("\n");
-
-		}
-	}
-
-	public void displayAllContactByNameLinkedList(LinkedList<Contact> List) {// new maybe it's not necessary
-		if (List.isempty()) {
-			System.out.println("there is no contact in your list");
-		} else {
-			List.findfirst();
-			while (!List.last()) {
-				System.out.println(List.retrieve().getContactname());
-				System.out.print("\n");
-				List.findnext();
-			}
-			System.out.println(List.retrieve().getContactname());
-			System.out.print("\n");
-		}
-
-		
-	}
-
-	public void displayAllEventsLinkedList(LinkedList<Event> List) {// new
-		if (List.isempty()) {
-			System.out.println("there is no contact in your list");
-		} else {
-
-			List.findfirst();
-			while (!List.last()) {
-				System.out.println("This event has these contacts");
-				displayAllContactByNameLinkedList(List.retrieve().ContactsWithEvent);
-				System.out.print("\n");
-				List.findnext();
-			}
-			System.out.println(List.retrieve());
-			System.out.println("This event has these contacts");
-			displayAllContactByNameLinkedList(List.retrieve().ContactsWithEvent);
-			System.out.print("\n");
-		}
-
-	}
+    //check if we have conflict for this contact with his events before
+    private boolean CheckConflict(Event event) {
+        //to each event in the list
+        Event temp = events;
+        while(temp != null)
+        {
+            //if same contact and same event date&time then return true this is conflict!
+            if(temp.c.name.equals(event.c.name) && temp.date.compareTo(event.date) == 0)
+                return true;
+            temp = temp.next;
+        }
+        return false;//no conflict
+    }
 }
+

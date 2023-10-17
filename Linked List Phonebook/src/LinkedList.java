@@ -1,108 +1,186 @@
-class Node<T>
-{
-	public T data;
-	public Node<T> next;
-	public Node(T d) {
-		next=null;
-		data=d;
-	}
+
+
+
+
+import java.util.Date;
+
+
+public class LinkedList {
+    //LinkedListADT all_contacts ;
+    Contact head;
+    
+    LinkedList()
+    {
+        head=null;
+    }
+    
+    //add new contact to the list
+    public void add(Contact c) {
+        //check if list is empty
+        if (head == null) {
+            head = c;} 
+        else{
+            //add in alphapitical order 
+            Contact temp = head , prev = head;
+            while(temp != null)
+            {
+                if(temp.compareTo(c) > 0)
+                {
+                    if(temp == head){
+                        c.next= head;
+                        head=c;
+                    }
+                    else{
+                        prev.next =c;
+                        c.next = temp;
+                    }
+                    return;
+                }
+                prev = temp;
+                temp= temp.next;
+            }
+            prev.next = c;
+        }
+    }
+    
+    //check if we have contact with same name or phone before
+    public boolean check(String name , String phone)
+    {
+        //to each contact in the list 
+        Contact temp = head;
+        
+        while(temp != null)
+        {
+            //if name or phone equals then return true
+            if(temp.name.equals(name) || temp.phone.equals(phone))
+                return true;
+            temp=temp.next;
+        }
+        return false;
+    }
+    
+    //search for contact by name
+    public Contact SearchByName(String name)
+    {
+        //to each contact
+        Contact temp = head;
+        
+        while(temp != null)
+        {
+            //if name equals then return the contact 
+            if(temp.name.equals(name))
+                return temp;
+            temp=temp.next;
+        }
+        return null;
+    }
+    
+    //search for contact by phone 
+    public Contact SearchByPhone(String phone)
+    {
+        //to each contact
+        Contact temp = head;
+        while(temp != null)
+        {
+            //if phone equals then return the contact 
+            if(temp.phone.equals(phone))
+                return temp;
+            temp=temp.next;
+        }
+        return null;
+    }
+    
+    //search for contacts by email 
+    public Contact SearchByEmail(String email)
+    {
+    	 Contact temp = head;
+         while(temp != null)
+         {
+             //if phone equals then return the contact 
+             if(temp.email.equalsIgnoreCase(email))
+                 return temp;
+             temp=temp.next;
+         }
+         return null;
+     }
+     
+    
+    //search for contacts by address 
+    public Contact SearchByAddress(String address)
+    {
+    	Contact temp = head;
+        while(temp != null)
+        {
+            //if phone equals then return the contact 
+            if(temp.address.equalsIgnoreCase(address))
+                return temp;
+            temp=temp.next;
+        }
+        return null;
+    }
+    
+    //search for contacts by birth date 
+    public Contact SearchByBirth(Date birth)
+    {
+    	Contact temp = head;
+        while(temp != null)
+        {
+            //if phone equals then return the contact 
+            if(temp.birth.equals(birth))
+                return temp;
+            temp=temp.next;
+        }
+        return null;
+    }
+    
+    
+    //delete a contact based on name
+    public boolean delete(String name)
+    {
+        //to each contact in the list
+        Contact temp = head , prev = head;
+        while(temp != null)
+        {
+            //if name equals then delete this contact
+            if(temp.name.equals(name))
+            {
+                if (temp == head)
+                    head = head.next;
+                else {
+                    prev.next = temp.next;
+                }
+                return true;
+            }
+            prev = temp;
+            temp=temp.next;
+        }
+        return false;//not found
+    }
+    
+    //search contacts based on first name
+    public Contact[] SearchByFirstName(String name)
+    {
+        //array to store the contacts in
+        Contact[] c = new Contact[100];
+        int i=0;
+        //to each contact in the list
+        Contact temp = head;
+        while(temp != null)
+        {
+            //split the name to get the first name 
+            String[] nameSplit= temp.name.split(" ");
+            //if first name equals then add the contact
+            if(nameSplit[0].equals(name))
+            {
+                c[i++]=temp;
+            }
+            temp=temp.next;
+        }
+        return c;
+    }
+    
+    
+    
+    
 }
 
-public class LinkedList<T> {
-	private Node<T>head;
-	private Node<T> current;
-	public LinkedList () {
-	head = current = null;
-	}
-	public boolean isempty () {
-	return head == null;
-	}
-	public boolean last () {
-	return current.next == null;	
-	
-	}
-	public boolean full () {
-		return false; }
-		public void findfirst () {
-		current = head;
-		}
-		public void findnext () {
-		current = current.next; }
-		public T retrieve () {
-		return current.data; }
-		public void update (T d) {
-		current.data = d; 
-}
-
-		public void insert (T value) {
-			Node<T> p;
-			if (isempty()) {
-			current = head = new Node<T> (value);
-			}
-			else {
-			p= current.next;
-			current.next = new Node<T> (value);
-			current = current.next;
-			current.next = p;
-			}
-		}
-		public void remove () {
-			if (current == head) {
-			head = head.next;
-			}
-			else {
-			Node<T> tmp = head;
-			while (tmp.next != current)
-			tmp = tmp.next;
-			tmp.next = current.next;
-			}
-			if (current.next == null)
-			current = head;
-			else
-			current = current.next;
-		}
-
-		
-		
-public boolean search(T X) {
-	Node<T>temp=head;
-	while(temp!=null) {
-		if(temp.data.equals(X))
-			return true;
-		else
-			temp=temp.next;
-	}
-	return false;
-}
-public void display() {
-	Node cuurent=head;
-	while(cuurent!=null) {
-		System.out.print(cuurent.data+ "");
-		cuurent=cuurent.next;
-	}
-}
-public void AddSorted2(T d) {
-	Node<T> p=new Node<T>(d);
-	if (head == null) {
-		head = p;
-		current = p;
-		return;
-
-	} else {
-		if (((Contact) d). compareTo((Contact) head.data) < 0) {
-			p.next = head;
-			head = p;
-			return;
-		} else {
-			Node<T> r = head,
-			q = null;
-			while (r != null && (((Contact) r.data).compareTo(((Contact) d).getContactname()) <= 0)) {
-				q = r;
-			r = r.next;
-		}
-		q.next = p;
-		p.next = r;
-	}
-}
-}
-}
