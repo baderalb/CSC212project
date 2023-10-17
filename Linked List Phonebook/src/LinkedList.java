@@ -1,7 +1,17 @@
-
+/*Class phaseOne.java
+CSC212 Data structure- project phase1 
+Fall 2023
+EDIT DATE:10/16/2023
+THEM : GOTHAMENGINEERS
+  AUTHORS:
+Saud Khalid Alayed—443101371
+Bader Abdulnasser Albabtain-443101022
+Sultan Assaf Almalki--443102101
+*/
 import java.util.Date;
+
 public class LinkedList {
-    //LinkedListADT all_contacts ;
+    //LinkedList all_contacts ;
     Contact head;
     
     LinkedList()
@@ -178,4 +188,3 @@ public class LinkedList {
     
     
 }
-
