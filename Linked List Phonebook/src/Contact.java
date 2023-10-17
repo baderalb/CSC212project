@@ -1,137 +1,45 @@
-import java.util.Scanner;
 
-public class Contact implements Comparable<String> {
-	private String contactname;
-	private String phonenumber;
-	private String emailaddress;
-	private String address;
-	private String birthday;
-	private String notes;
-	private String relationship;
-	private String nickname;
-	private Event  EventInContact;
-	public LinkedList <Event> ContactEvent = new LinkedList<Event>();
-	public String getContactname() {
-		return contactname;
-	}
+import java.util.*;
+public class Contact implements Comparable{
 
-	public void setContactname(String contactname) {
-		this.contactname = contactname;
-	}
+    //name, phone number, email address, address, birthday, and notes
+    String name;
+    String phone;
+    String email;
+    String address;
+    Date birth;
+    String notes;
+    Contact next;
+    Event head;
 
-	public String getPhonenumber() {
-		return phonenumber;
-	}
+    public Contact(String name, String phone, String email, String address, Date birth, String notes) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.birth = birth;
+        this.notes = notes;
+        next=null;
+        head = null;
+    }
 
-	public void setPhonenumber(String phonenumber) {
-		this.phonenumber = phonenumber;
-	}
+    @Override
+    public int compareTo(Object o) {
+       return this.name.compareTo(((Contact)o).name);
 
-	public String getEmailadress() {
-		return emailaddress;
-	}
+    }
 
-	public void setEmailadress(String emailadress) {
-		this.emailaddress = emailadress;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
-
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
-	public String getRelationship() {
-		return relationship;
-	}
-
-	public void setRelationship(String relationship) {
-		this.relationship = relationship;
-	}
-
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-	public Contact() {
-
-	}
-
-	public Contact(String contactname, String phonenumber, String emailaddress, String address, String birthday,
-			String relationship, String nickname, String notes) {
-		this.contactname = contactname;
-		this.phonenumber = phonenumber;
-		this.emailaddress = emailaddress;
-		this.address = address;
-		this.birthday = birthday;
-		this.notes = notes;
-		this.nickname = nickname;
-	}
-
-	public Contact(Contact x) {
-		this.contactname = x.contactname;
-		this.phonenumber = x.phonenumber;
-		this.emailaddress = x.emailaddress;
-		this.address = x.address;
-		this.birthday = x.birthday;
-		this.notes = x.notes;
-		this.nickname = x.nickname;
-		this.relationship = x.relationship;
-
-	}
-
-	public int compareTo(String x) {
-		return contactname.compareTo(x);
-	}
-
-	public int compareTo(Contact p) {
-		return contactname.compareTo(p.contactname);
-	}
-	public void readfromcontact() {
-		Scanner input = new Scanner(System.in);
-		System.out.println(" please enter the contact name:");
-		contactname = input.nextLine();
-		System.out.println(" please enter the contact number:");
-		phonenumber = input.nextLine();
-		System.out.println(" please enter the contact email address:");
-		emailaddress = input.nextLine();
-		System.out.println(" please enter the contact address:");
-		address = input.nextLine();
-		System.out.println(" please enter the contact birthday:");
-		birthday = input.nextLine();
-		System.out.println("please enter the note for the contact:");
-		notes = input.nextLine();
-		System.out.println("please enter the contact relationship:");
-		relationship = input.nextLine();
-		System.out.println("please enter the contact nickname:");
-		nickname = input.nextLine();
-
-	}
-
-	public void displaycontact() {
-		System.out.println("Name:" + contactname);
-	}
+     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Name: ").append(name).append("\n");
+        sb.append("Phone Number: ").append(phone).append("\n");
+        sb.append("Email Address: ").append(email).append("\n");
+        sb.append("Address: ").append(address).append("\n");
+        sb.append("Birthday: ").append(birth).append("\n");
+        sb.append("Notes: ").append(notes).append("\n");
+        return sb.toString();
+    }
 
 }
+
